@@ -1,0 +1,12 @@
+.leaflet-container{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+.fab{
+  position: absolute;
+  top: 90vh;
+  left: 85vw;
+}
