@@ -2,19 +2,18 @@
   "bathrooms": [
     {
       "id": 0,
-      "name": "Baño 0",
-      "coordinates": {
-        "lat": 19.24191195680494,
-        "lng": -103.72634366080396
-      }
+      "name": "Baño IUBA",
+      "coordinates": [19.249256101145527, -103.72171539515614]
     },
     {
       "id": 1,
-      "name": "Baño 1",
-      "coordinates": {
-        "lat": 19.24,
-        "lng": -103.72634366080396
-      }
+      "name": "Baño Plaza San Fernando",
+      "coordinates": [19.252633825970463, -103.72077888738802]
+    },
+    {
+      "id": 2,
+      "name": "Baño Plaza Country",
+      "coordinates": [19.25462786610481, -103.71392277060073]
     }
   ]
 }
