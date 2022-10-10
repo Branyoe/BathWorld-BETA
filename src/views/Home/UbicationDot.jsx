@@ -1,7 +1,6 @@
-import { Marker, useMap } from "react-leaflet";
+import { Marker } from "react-leaflet";
 import AddIcon from '@mui/icons-material/LocationSearchingSharp';
 import { Fab } from '@mui/material';
-import { useState } from "react";
 
 export default function UbicationDot({ position, icon }) {
 
