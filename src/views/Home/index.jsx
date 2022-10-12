@@ -22,31 +22,30 @@ export default function Home() {
     // console.log(userLocation);
   }, [userLocation]);
 
-  if(locationPermission) {
-    navigator.geolocation.watchPosition(
-      (position) => {
-        const currentLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-        if (currentLocation.lat !== userLocation.lat || currentLocation.lng !== userLocation.lng) {
-          setUserLocation(currentLocation);
-        }
-      },
-      (error) => console.log(error),
-      {
-        enableHighAccuracy: true
+  navigator.geolocation.watchPosition(
+    (position) => {
+      const currentLocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
       }
-    );
-  }
+      if (currentLocation.lat !== userLocation.lat || currentLocation.lng !== userLocation.lng) {
+        setUserLocation(currentLocation);
+      }
+    },
+    (error) => console.log(error),
+    {
+      enableHighAccuracy: true
+    }
+  );
+
 
   return (
     <div>
-      <Map userLocation={userLocation}/>
+      <Map userLocation={userLocation} />
       {!locationPermission && <LocationDialog setLocationPermission={setLocationPermission} />}
-      <BathroomView/>
-      <FabContainer/>
-      <AddFormDrawer/>
+      <BathroomView />
+      <FabContainer setUserGeolocation={setUserLocation} userLocation={userLocation}/>
+      <AddFormDrawer />
     </div>
   );
 }
