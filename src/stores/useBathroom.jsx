@@ -7,7 +7,7 @@ const useBathroom = create((set, get) => ({
     set({ isOpen: state });
   },
   setData: (data => {
-    set({ data: data })
+    set({ data: data }) 
   })
 }));
 

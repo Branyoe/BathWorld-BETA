@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import useAddForm_FabContainer from '../../../stores/AddForm_FabContainer';
-import AddBathroomForm from '../../BathroomRegisterForm';
+import AddBathroomForm from '../../AddBathroomForm';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -46,12 +45,9 @@ export default function AddFormDrawer() {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Agrega un nuevo baño
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              Guardar
-            </Button>
           </Toolbar>
         </AppBar>
-        <AddBathroomForm/>
+        <AddBathroomForm handleClose={handleClose} />
       </Dialog>
     </div>
   );

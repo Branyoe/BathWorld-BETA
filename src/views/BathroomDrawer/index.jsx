@@ -7,7 +7,7 @@ import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import useBathroom from '../../stores/bathroom';
+import useBathroom from '../../stores/useBathroom';
 import { Button, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -82,7 +82,7 @@ function BathroomDrawer(props) {
         >
           <Puller/>
           <Stack direction="row" justifyContent="space-between">
-            <Typography sx={{ p: 2, color: 'text.primary', paddingTop: 3}}>{data.name}</Typography>
+            <Typography variant="h6" sx={{ p: 2, color: 'text.primary', paddingTop: 3}}>{data.name}</Typography>
             <Button
               size="small"
               onClick={toggleDrawer(false)}

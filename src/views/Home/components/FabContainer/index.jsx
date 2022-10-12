@@ -20,10 +20,10 @@ export default function FabContainer() {
   return (
     <>
       <Stack className="fab" gap={1} direction="column">
-        <Fab size="small" color="primary" aria-label="add">
+        <Fab size="normal" color="primary" aria-label="add">
           <MyLocationIcon/>
         </Fab>
-        <Fab onClick={handleOpenAddForm} size="small" color="primary" aria-label="add">
+        <Fab onClick={handleOpenAddForm} size="normal" color="primary" aria-label="add">
           <AddIcon/>
         </Fab>
       </Stack>

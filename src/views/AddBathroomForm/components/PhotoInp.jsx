@@ -2,7 +2,7 @@ import { Stack, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 
 
-export default function PhotoInp() {
+export default function PhotoInp({handleChange, state}) {
 
   return (
     <Box
@@ -26,10 +26,12 @@ export default function PhotoInp() {
       <Stack direction="row" gap={1}>
         <TextField
           id="photoInp"
-          name="photoInp"
+          name="photo"
           type="file"
           size="small"
           fullWidth
+          onChange={handleChange}
+          value={state}
         />
       </Stack>
     </Box>

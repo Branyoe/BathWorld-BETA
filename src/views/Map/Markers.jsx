@@ -1,18 +1,17 @@
-import data from '../data.json';
-import MarkerComponent from './Home/components/MarkerComponent';
-import useBathroom from '../stores/bathroom'
-import BathroomIcon from '../icons/BathroomIcon';
+import MarkerComponent from '../Home/components/MarkerComponent';
+import useBathroom from '../../stores/useBathroom'
+import BathroomIcon from '../../icons/BathroomIcon';
 
-export default function Markers() {
+export default function Markers({ bathrooms }) {
   const { setIsOpen, setData } = useBathroom(state => ({
     setIsOpen: state.setIsOpen,
     setData: state.setData
   }))
 
-  return data.bathrooms.map((bathroom, i) => (
+  return bathrooms?.map((bathroom, i) => (
     <div key={bathroom.id}>
       <MarkerComponent
-        position={bathroom.coordinates}
+        position={[bathroom.lat, bathroom.lng]}
         icon={BathroomIcon}
         eventHandlers={{
           click: () => {
