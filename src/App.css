@@ -7,6 +7,6 @@
 
 .fab{
   position: absolute;
-  top: 90vh;
-  left: 85vw;
+  top: calc(100% - 120px);
+  left: calc(100% - 50px);
 }

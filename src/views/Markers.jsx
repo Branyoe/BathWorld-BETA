@@ -1,7 +1,7 @@
 import data from '../data.json';
-import MarkerComponent from './Home/MarkerComponent';
-import IconLocation from './IconLocation';
+import MarkerComponent from './Home/components/MarkerComponent';
 import useBathroom from '../stores/bathroom'
+import BathroomIcon from '../icons/BathroomIcon';
 
 export default function Markers() {
   const { setIsOpen, setData } = useBathroom(state => ({
@@ -13,7 +13,7 @@ export default function Markers() {
     <div key={bathroom.id}>
       <MarkerComponent
         position={bathroom.coordinates}
-        icon={IconLocation}
+        icon={BathroomIcon}
         eventHandlers={{
           click: () => {
             setIsOpen(true);

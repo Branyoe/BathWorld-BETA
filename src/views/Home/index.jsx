@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import BathroomView from '../BathroomDrawer';
 import Map from '../Map';
+import AddFormDrawer from './components/AddFormDrawer';
+import FabContainer from './components/FabContainer';
 import LocationDialog from './components/LocationDialog';
 
 
@@ -43,6 +45,8 @@ export default function Home() {
       <Map userLocation={userLocation}/>
       {!locationPermission && <LocationDialog setLocationPermission={setLocationPermission} />}
       <BathroomView/>
+      <FabContainer/>
+      <AddFormDrawer/>
     </div>
   );
 }

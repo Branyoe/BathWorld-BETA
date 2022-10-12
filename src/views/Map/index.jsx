@@ -3,9 +3,7 @@ import { useState } from "react";
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-import IconUbication from "../IconUbication";
 import Markers from "../Markers"
-import UbicationDot from "../Home/UbicationDot";
 
 export default function Map({ userLocation }) {
   const [location] = useState([19.24191195680494, -103.72634366080396]);
@@ -17,10 +15,6 @@ export default function Map({ userLocation }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Markers />
-      <UbicationDot
-        icon={IconUbication}
-        position={userLocation}
-      />
     </MapContainer>
   )
 }

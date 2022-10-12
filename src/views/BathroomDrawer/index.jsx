@@ -9,6 +9,8 @@ import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import useBathroom from '../../stores/bathroom';
+import { Button, Stack } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const drawerBleeding = 56;
 
@@ -61,12 +63,12 @@ function BathroomDrawer(props) {
       <SwipeableDrawer
         container={container}
         anchor="bottom"
+        disableDiscovery={false}
         open={isOpen}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         swipeAreaWidth={drawerBleeding}
-        disableSwipeToOpen={false}
-        hideBackdrop
+        disableSwipeToOpen
       >
         <StyledBox
           sx={{
@@ -79,8 +81,16 @@ function BathroomDrawer(props) {
             left: 0,
           }}
         >
-          <Puller />
-          <Typography sx={{ p: 2, color: 'text.secondary' }}>{data.name}</Typography>
+          <Puller/>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography sx={{ p: 2, color: 'text.primary', paddingTop: 3}}>{data.name}</Typography>
+            <Button
+              size="small"
+              onClick={toggleDrawer(false)}
+            >
+              <CloseIcon/>
+            </Button>
+          </Stack>
         </StyledBox>
         <StyledBox
           sx={{
@@ -90,7 +100,7 @@ function BathroomDrawer(props) {
             overflow: 'auto',
           }}
         >
-          <Skeleton variant="rectangular" height="100%" />
+          
         </StyledBox>
       </SwipeableDrawer>
     </Root>
