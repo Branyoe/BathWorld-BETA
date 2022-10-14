@@ -1,6 +1,5 @@
-import { collection, getDocs } from "firebase/firestore";
+
 import create from "zustand";
-import { dataBase } from "../firebase";
 
 const geolocationStore = create((set, get) => ({
   userGeolocation: {
