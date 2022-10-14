@@ -1,7 +1,7 @@
 
 
 import 'leaflet/dist/leaflet.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import BathroomView from '../BathroomDrawer';
 import Map from '../Map';
@@ -19,9 +19,9 @@ export default function Home() {
     lng: 0
   });
 
-  useEffect(() => {
-    // console.log(userLocation);
-  }, [userLocation]);
+  // useEffect(() => {
+  //   // console.log(userLocation);
+  // }, [userLocation]);
 
   navigator.geolocation.watchPosition(
     (position) => {
