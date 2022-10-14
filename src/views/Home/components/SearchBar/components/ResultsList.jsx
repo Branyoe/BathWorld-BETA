@@ -17,7 +17,7 @@ export default function ResultsList({ data, inpValue }) {
   }))
 
   const filterData = data.filter(e => {
-    if (inpValue !== '') return e.name.toLowerCase().includes(inpValue);
+    if (inpValue !== '') return e.name.toLowerCase().includes(inpValue.toLowerCase());
     return null;
   })
 
