@@ -4,19 +4,24 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { ListItemButton } from '@mui/material';
 import bathroomDrawerStore from '../../../../../stores/bathroomDrawerStore';
+import bathroomStore from '../../../../../stores/bathroomStore';
 
 const style = {
   width: '100%',
   bgcolor: 'background.paper',
 };
 
-export default function ResultsList({ data, inpValue }) {
+export default function ResultsList({ inpValue }) {
   const { setIsOpen, setData } = bathroomDrawerStore(state => ({
     setIsOpen: state.setIsOpen,
     setData: state.setData
   }))
 
-  const filterData = data.filter(e => {
+  const { bathrooms } = bathroomStore(state => ({
+    bathrooms: state.bathrooms
+  }))
+
+  const filterData = bathrooms.filter(e => {
     if (inpValue !== '') return e.name.toLowerCase().includes(inpValue.toLowerCase());
     return null;
   })

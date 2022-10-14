@@ -9,8 +9,8 @@ import geolocationStore from "../../../../stores/geolocationStore";
 
 export default function FabContainer({  userLocation }) {
 
-  const { setUserGeolocation } = geolocationStore(state => ({
-    setUserGeolocation: state.setUserGeolocation
+  const { updateUserGeolocation } = geolocationStore(state => ({
+    updateUserGeolocation: state.updateUserGeolocation
   }))
   const { setIsOpen } = addFormStore(state => ({
     setIsOpen: state.setIsOpen,
@@ -47,7 +47,7 @@ export default function FabContainer({  userLocation }) {
         gap={1} 
         justifyContent="end"
         alignItems="end" direction="column">
-        <Fab onClick={setUserGeolocation} size="small" color="primary" aria-label="add">
+        <Fab onClick={updateUserGeolocation()} size="small" color="primary" aria-label="add">
           <MyLocationIcon />
         </Fab>
         <Fab onClick={handleOpenAddForm} size="normal" color="success" aria-label="add">

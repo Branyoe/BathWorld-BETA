@@ -6,23 +6,30 @@ const geolocationStore = create((set, get) => ({
     lat: null,
     lng: null
   },
-  setUserGeolocation: () => {
-    navigator.geolocation.watchPosition(
+  geolocationWatch: () => {
+    return navigator.geolocation.watchPosition(
       (position) => {
+        console.log(position);
         const currentLocation = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        // if (currentLocation.lat !== userLocation.lat || currentLocation.lng !== userLocation.lng) {
-        //   setUserLocation(currentLocation);
-        // }
-        set({ userGeolocation: currentLocation });
+        if (currentLocation.lat !== get().userGeolocation.lat || currentLocation.lng !== get().userGeolocation.lng) {
+          set({ userGeolocation: currentLocation });
+        }
       },
       (error) => console.log(error),
       {
         enableHighAccuracy: true
       }
     )
+  },
+  setUserGeolocation: () => {
+    get().geolocationWatch()
+  },
+  updateUserGeolocation: () => {
+    navigator.geolocation.clearWatch(get().geolocationWatch());
+    get().setUserGeolocation();
   }
 }));
 

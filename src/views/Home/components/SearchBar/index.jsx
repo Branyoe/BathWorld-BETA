@@ -10,7 +10,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import bathroomStore from '../../../../stores/bathroomStore';
 import ResultsList from './components/ResultsList';
 import { useAuth } from '../../../../context/authContext';
 import FullScreenLoading from './components/FullScreenLoading';
@@ -65,30 +64,8 @@ export default function SearchBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const { bathrooms } = bathroomStore(state => ({
-    bathrooms: state.bathrooms,
-    setBathrooms: state.setBathrooms
-  }))
+ 
 
-  // const data = {
-  //   "bathrooms": [
-  //     {
-  //       "id": 0,
-  //       "name": "Baño IUBA",
-  //       "coordinates": [19.249256101145527, -103.72171539515614]
-  //     },
-  //     {
-  //       "id": 1,
-  //       "name": "Baño Plaza San Fernando",
-  //       "coordinates": [19.252633825970463, -103.72077888738802]
-  //     },
-  //     {
-  //       "id": 2,
-  //       "name": "Baño Plaza Country",
-  //       "coordinates": [19.25462786610481, -103.71392277060073]
-  //     }
-  //   ]
-  // }
 
   const handleSearch = ({ target: { value } }) => {
     setSearchValue(value);
@@ -188,7 +165,6 @@ export default function SearchBar() {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
-                value={searchValue}
                 onChange={handleSearch}
               />
             </Search>
@@ -211,7 +187,7 @@ export default function SearchBar() {
         {renderMobileMenu}
         {renderMenu}
       </Box>
-      {searchValue && <ResultsList data={bathrooms} inpValue={searchValue} />}
+      {searchValue && <ResultsList inpValue={searchValue} />}
     </>
   );
 }
