@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -17,20 +17,34 @@ export default function Map({ userLocation }) {
     setBathrooms: state.setBathrooms
   }))
 
-  const updateBathrooms = async () => {
-    await setBathrooms();
-  }
-
-  useEffect(() => {
+  const updateBathrooms = useRef(null);
+  updateBathrooms.current = useCallback(() => {
     const getBathrooms = async () => {
       try {
-        updateBathrooms();
+        setBathrooms();
       } catch (error) {
         console.log(error);
       }
     }
     getBathrooms();
-  }, [])
+  }, [setBathrooms])
+
+  useEffect(() => { updateBathrooms.current() }, [updateBathrooms])
+
+  // const updateBathrooms = async () => {
+  //   await setBathrooms();
+  // }
+
+  // useEffect(() => {
+  //   const getBathrooms = async () => {
+  //     try {
+  //       updateBathrooms();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   getBathrooms();
+  // }, [])
 
   return (
     <MapContainer center={location} zoom={zoom} scrollWheelZoom={true} zoomControl={false}>
