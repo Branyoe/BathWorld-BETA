@@ -12,6 +12,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import bathroomStore from '../../../../stores/bathroomStore';
 import ResultsList from './components/ResultsList';
+import { useAuth } from '../../../../context/authContext';
+import FullScreenLoading from './components/FullScreenLoading';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,6 +60,8 @@ export default function SearchBar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [searchValue, setSearchValue] = React.useState("");
 
+  const { logOut, loading } = useAuth();
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -103,6 +107,13 @@ export default function SearchBar() {
     handleMobileMenuClose();
   };
 
+  const handleLogOutBtn = async () => {
+    const x = await logOut();
+    console.log(x);
+    handleMenuClose();
+  }
+  if (loading) return <FullScreenLoading />
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -121,8 +132,7 @@ export default function SearchBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleLogOutBtn}>Cerrar sesión</MenuItem>
     </Menu>
   );
 
@@ -201,7 +211,7 @@ export default function SearchBar() {
         {renderMobileMenu}
         {renderMenu}
       </Box>
-      {searchValue && <ResultsList data={bathrooms} inpValue={searchValue}/>}
+      {searchValue && <ResultsList data={bathrooms} inpValue={searchValue} />}
     </>
   );
 }

@@ -1,11 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -14,37 +10,28 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-
+import { useAuth } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
+import { LoadingButton } from '@mui/lab';
+import Alert from '@mui/material/Alert';
 
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState("");
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
 
-  
   const validationSchema = yup.object({
     email: yup
-      .string('')
+      .string('solo texto')
       .required('campo requerido'),
     password: yup
-      .string('')
-      .required("campo requerido"),
-    lng: yup
-      .number("solo numeros")
-      .required("campo requerido"),
-    type: yup
-      .string("solo texto")
-      .required("campo requerido"),
-    photo: yup
-      .string("solo texto")
+      .string('solo texto')
+      .min(8, "minimo 8 carácteres")
+      .required("campo requerido")
   });
 
   const formik = useFormik({
@@ -53,8 +40,17 @@ export default function SignIn() {
       password: ""
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log("sex");
+    onSubmit: async (values) => {
+      try {
+        setIsLoading(true);
+        await signIn(values.email, values.password);
+        setIsLoading(false);
+        navigate('/');
+      } catch (e) {
+        setError(e.message)
+        setIsLoading(false);
+      }
+      console.log("dataBaseUserQuery");
     },
   });
 
@@ -74,57 +70,53 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          Iniciar Sesión
+            Iniciar Sesión
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Correo electónico"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={formik.values.name}
-              onChange={formik.handleChanges}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Contraseña"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={formik.values.password                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-              onChange={formik.handleChanges}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Mantener sesión"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Iniciar Sesión
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  olvidó su contraseña??
-                </Link>
+          <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  name="email"
+                  required
+                  fullWidth
+                  autoComplete="email"
+                  id="email"
+                  label="Correo electrónico"
+                  autoFocus
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                />
               </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"¿No tiene una cuenta? Sign Up"}
-                </Link>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Contraseña"
+                  type="password"
+                  autoComplete="new-password"
+                  id="password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  helperText={formik.touched.password && formik.errors.password}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                {error && <Alert severity="error">{error}</Alert>}
               </Grid>
             </Grid>
+            <LoadingButton
+              type="submit"
+              loading={isLoading}
+              variant="contained"
+              fullWidth
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Continuar
+            </LoadingButton>
           </Box>
         </Box>
       </Container>
