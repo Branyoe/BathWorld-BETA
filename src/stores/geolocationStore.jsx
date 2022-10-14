@@ -9,7 +9,6 @@ const geolocationStore = create((set, get) => ({
   geolocationWatch: () => {
     return navigator.geolocation.watchPosition(
       (position) => {
-        console.log(position);
         const currentLocation = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
