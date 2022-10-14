@@ -17,10 +17,14 @@ export default function Map({ userLocation }) {
     setBathrooms: state.setBathrooms
   }))
 
+  const updateBathrooms = async () => {
+    await setBathrooms();
+  }
+
   useEffect(() => {
     const getBathrooms = async () => {
       try {
-        await setBathrooms();
+        updateBathrooms();
       } catch (error) {
         console.log(error);
       }
