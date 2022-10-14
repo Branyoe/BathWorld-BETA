@@ -8,6 +8,7 @@ import Map from '../Map';
 import AddFormDrawer from './components/AddFormDrawer';
 import FabContainer from './components/FabContainer';
 import LocationDialog from './components/LocationDialog';
+import SearchBar from './components/SearchBar';
 
 
 
@@ -41,10 +42,13 @@ export default function Home() {
 
   return (
     <div>
-      <Map userLocation={userLocation} />
       {!locationPermission && <LocationDialog setLocationPermission={setLocationPermission} />}
+      <SearchBar />
+      <div>
+        <Map userLocation={userLocation} />
+      </div>
       <BathroomView />
-      <FabContainer setUserGeolocation={setUserLocation} userLocation={userLocation}/>
+      <FabContainer setUserGeolocation={setUserLocation} userLocation={userLocation} />
       <AddFormDrawer />
     </div>
   );

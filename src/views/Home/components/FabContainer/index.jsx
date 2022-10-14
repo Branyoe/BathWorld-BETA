@@ -2,13 +2,13 @@ import { Fab } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import { Stack } from "@mui/system";
-import useAddForm_FabContainer from "../../../../stores/AddForm_FabContainer";
+import addFormStore from "../../../../stores/addFormStore";
 
 
 
 export default function FabContainer({ setUserGeolocation, userLocation }) {
 
-  const { setIsOpen } = useAddForm_FabContainer(state => ({
+  const { setIsOpen } = addFormStore(state => ({
     setIsOpen: state.setIsOpen,
     setData: state.setData
   }))

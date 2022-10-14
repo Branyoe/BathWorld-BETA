@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import useAddForm_FabContainer from '../../../stores/AddForm_FabContainer';
+import addFormStore from '../../../stores/addFormStore';
 import AddBathroomForm from '../../AddBathroomForm';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AddFormDrawer() {
   
-  const { isOpen, setIsOpen } = useAddForm_FabContainer(state => ({
+  const { isOpen, setIsOpen } = addFormStore(state => ({
     isOpen: state.isOpen,
     setIsOpen: state.setIsOpen
   }))

@@ -7,7 +7,7 @@ import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import useBathroom from '../../stores/useBathroom';
+import bathroomDrawerStore from '../../stores/bathroomDrawerStore';
 import { Button, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -35,7 +35,7 @@ const Puller = styled(Box)(({ theme }) => ({
 
 function BathroomDrawer(props) {
   const { window } = props;
-  const { isOpen, setIsOpen, data } = useBathroom(state => ({
+  const { isOpen, setIsOpen, data } = bathroomDrawerStore(state => ({
     isOpen: state.isOpen,
     setIsOpen: state.setIsOpen,
     data: state.data

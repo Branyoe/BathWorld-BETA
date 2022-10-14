@@ -8,10 +8,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PhotoInp from './components/PhotoInp';
 import { Avatar, Button } from '@mui/material';
 import { dataBase } from "../../firebase"
-import { collection, doc, getDocs, setDoc } from "firebase/firestore"
-import useBathrooms from '../../stores/useBathrooms';
+import { collection, doc, setDoc } from "firebase/firestore"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import bathroomStore from '../../stores/bathroomStore';
 
 const theme = createTheme();
 
@@ -27,21 +27,22 @@ export default function AddBathroomForm({ handleClose }) {
     }
   ]
 
-  const { setBathroomsList } = useBathrooms(state => ({
-    bathroomsList: state.bathroomsList,
-    setBathroomsList: state.setBathroomsList
+  const { setBathrooms } = bathroomStore(state => ({
+    setBathrooms: state.setBathrooms
   }))
 
   const addBathroom = async (data) => {
     const newBathroom = doc(collection(dataBase, "bathrooms"));
     await setDoc(newBathroom, data)
     const getBathrooms = async () => {
-      const bathrooms = [];
-      const q = await getDocs(collection(dataBase, "bathrooms"));
-      q.docs.forEach((doc) => bathrooms.push({ ...doc.data(), id: doc.id }))
-      setBathroomsList(bathrooms);
+      try {
+        await setBathrooms();
+      } catch (error) {
+        console.log(error);
+      }
     }
     getBathrooms();
+    handleClose();
   }
 
   const validationSchema = yup.object({
