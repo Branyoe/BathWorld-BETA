@@ -1,12 +1,22 @@
-  .leaflet-container{
+  .leaflet-container {
     width: 100vw;
     height: 100vh;
     position: fixed;
     z-index: -1;
   }
 
-.fab{
-  position: absolute;
-  top: calc(100% - 130px);
-  left: calc(100% - 70px);
-}
+  .fab {
+    position: absolute;
+    top: calc(100% - 130px);
+    left: calc(100% - 70px);
+  }
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+  }
