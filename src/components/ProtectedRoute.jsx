@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import FullScreenLoading from "../views/Home/components/SearchBar/components/FullScreenLoading";
 

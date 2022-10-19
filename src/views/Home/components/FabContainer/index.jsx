@@ -1,8 +1,8 @@
 import { Fab } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import { Stack } from "@mui/system";
-import addFormStore from "../../../../stores/addFormStore";
+// import addFormStore from "../../../../stores/addFormStore";
 import geolocationStore from "../../../../stores/geolocationStore";
 
 
@@ -12,14 +12,14 @@ export default function FabContainer({  userLocation }) {
   const { updateUserGeolocation } = geolocationStore(state => ({
     updateUserGeolocation: state.updateUserGeolocation
   }))
-  const { setIsOpen } = addFormStore(state => ({
-    setIsOpen: state.setIsOpen,
-    setData: state.setData
-  }))
+  // const { setIsOpen } = addFormStore(state => ({
+  //   setIsOpen: state.setIsOpen,
+  //   setData: state.setData
+  // }))
 
-  const handleOpenAddForm = () => {
-    setIsOpen(true);
-  }
+  // const handleOpenAddForm = () => {
+  //   setIsOpen(true);
+  // }
 
   // const activeGeolocation = () => {
   //   navigator.geolocation.watchPosition(
