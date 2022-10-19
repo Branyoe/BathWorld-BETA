@@ -44,15 +44,14 @@ export default function FabContainer({  userLocation }) {
     <>
       <Stack 
         className="fab" 
-        gap={1} 
         justifyContent="end"
         alignItems="end" direction="column">
-        <Fab onClick={updateUserGeolocation} size="small" color="primary" aria-label="add">
+        <Fab onClick={updateUserGeolocation} size="medium" color="primary" aria-label="add">
           <MyLocationIcon />
         </Fab>
-        <Fab onClick={handleOpenAddForm} size="normal" color="success" aria-label="add">
+        {/* <Fab onClick={handleOpenAddForm} size="normal" color="" aria-label="add">
           <AddIcon />
-        </Fab>
+        </Fab> */}
       </Stack>
     </>
   );

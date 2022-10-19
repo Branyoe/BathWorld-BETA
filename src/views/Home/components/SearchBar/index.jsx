@@ -13,6 +13,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import ResultsList from './components/ResultsList';
 import { useAuth } from '../../../../context/authContext';
 import FullScreenLoading from './components/FullScreenLoading';
+import { Paper } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -64,7 +65,7 @@ export default function SearchBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
- 
+
 
 
   const handleSearch = ({ target: { value } }) => {
@@ -145,9 +146,17 @@ export default function SearchBar() {
     </Menu>
   );
 
+
+  const boxStyle = {
+    position: "absolute",
+    top: 56,
+    left: 0,
+    backgroundColor: "red",
+    width: "100vw"
+  }
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, zIndex: 100 }}>
         <AppBar position="static">
           <Toolbar>
             <Typography
@@ -187,7 +196,9 @@ export default function SearchBar() {
         {renderMobileMenu}
         {renderMenu}
       </Box>
-      {searchValue && <ResultsList inpValue={searchValue} />}
+      <Paper sx={boxStyle} elevation={4} >
+        {searchValue && <ResultsList inpValue={searchValue} />}
+      </Paper>
     </>
   );
 }

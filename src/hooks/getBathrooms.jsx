@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import { dataBase } from "../firebase";
+import { dataBase } from "../dbConf";
 
 export default function getBathrooms(){
   const getBathrooms = async () => {

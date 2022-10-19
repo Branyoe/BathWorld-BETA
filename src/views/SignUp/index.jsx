@@ -11,9 +11,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useAuth } from '../../context/authContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoadingButton } from '@mui/lab';
 import Alert from '@mui/material/Alert';
+import L from '@mui/material/Link';
 
 
 const theme = createTheme();
@@ -79,7 +80,7 @@ export default function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   name="email"
                   required
@@ -137,6 +138,15 @@ export default function SignUp() {
             >
               Continuar
             </LoadingButton>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link to="/sign-in">
+                  <L component={Box} variant="body2">
+                    ¿Ya tienes una cuenta? Inicia sesión.
+                  </L>
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>

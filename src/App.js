@@ -1,11 +1,11 @@
 import './App.css';
 import Routes from './routes';
-import './firebase';
+import './dbConf';
 import { AuthProvider } from './context/authContext';
 
 function App() {
   return <AuthProvider>
-    <Routes/>;
+    <Routes/>
   </AuthProvider>
 }
 

@@ -1,6 +1,6 @@
-import MarkerComponent from '../../Home/components/MarkerComponent';
-import bathroomDrawerStore from '../../../stores/bathroomDrawerStore'
-import BathroomIcon from '../../../icons/BathroomIcon';
+import MarkerComponent from './MarkerComponent';
+import BathroomIcon from '../../../../../icons/BathroomIcon';
+import bathroomDrawerStore from '../../../../../stores/bathroomDrawerStore';
 
 export default function Markers({ bathrooms }) {
   const { setIsOpen, setData } = bathroomDrawerStore(state => ({

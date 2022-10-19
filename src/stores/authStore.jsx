@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import create from "zustand";
-import { dataBase } from "../firebase";
+import { dataBase } from "../dbConf";
 
 const authStore = create((set, get) => ({
   user: {

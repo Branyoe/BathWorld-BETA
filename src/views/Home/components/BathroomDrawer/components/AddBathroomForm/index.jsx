@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -7,11 +6,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PhotoInp from './components/PhotoInp';
 import { Avatar, Button } from '@mui/material';
-import { dataBase } from "../../firebase"
+import {db} from "../../../../../../dbConf"
 import { collection, doc, setDoc } from "firebase/firestore"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import bathroomStore from '../../stores/bathroomStore';
+import bathroomStore from '../../../../../../stores/bathroomStore';
 
 const theme = createTheme();
 
@@ -32,7 +31,7 @@ export default function AddBathroomForm({ handleClose }) {
   }))
 
   const addBathroom = async (data) => {
-    const newBathroom = doc(collection(dataBase, "bathrooms"));
+    const newBathroom = doc(collection(db, "bathrooms"));
     await setDoc(newBathroom, data)
     const getBathrooms = async () => {
       try {

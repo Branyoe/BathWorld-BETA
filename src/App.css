@@ -1,12 +1,12 @@
-.leaflet-container{
-  width: 100vw;
-  height: calc(100vh - 54px);
-  position: relative;
-  top: 0;
-}
+  .leaflet-container{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+  }
 
 .fab{
   position: absolute;
-  top: calc(100% - 160px);
+  top: calc(100% - 130px);
   left: calc(100% - 70px);
 }

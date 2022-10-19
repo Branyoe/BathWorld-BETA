@@ -6,11 +6,6 @@ import { ListItemButton } from '@mui/material';
 import bathroomDrawerStore from '../../../../../stores/bathroomDrawerStore';
 import bathroomStore from '../../../../../stores/bathroomStore';
 
-const style = {
-  width: '100%',
-  bgcolor: 'background.paper',
-};
-
 export default function ResultsList({ inpValue }) {
   const { setIsOpen, setData } = bathroomDrawerStore(state => ({
     setIsOpen: state.setIsOpen,
@@ -28,7 +23,9 @@ export default function ResultsList({ inpValue }) {
 
 
   if (filterData.length) return (
-    <List sx={style} component="nav" aria-label="mailbox folders">
+    <List
+      sx={{ width: '100%', maxHeight: '30vh', bgcolor: 'background.paper', overflow: "scroll" }}
+    >
       {filterData.map(bathroom => (
         <div key={bathroom.id}>
           <ListItemButton onClick={

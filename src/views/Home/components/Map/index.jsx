@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css'
 
 import Markers from "./Components/Markers"
 import UbicationDot from "./Components/UbicationDot";
-import bathroomStore from "../../stores/bathroomStore";
+import bathroomStore from "../../../../stores/bathroomStore";
 
 
 export default function Map({ userLocation }) {
@@ -30,21 +30,6 @@ export default function Map({ userLocation }) {
   }, [setBathrooms])
 
   useEffect(() => { updateBathrooms.current() }, [updateBathrooms])
-
-  // const updateBathrooms = async () => {
-  //   await setBathrooms();
-  // }
-
-  // useEffect(() => {
-  //   const getBathrooms = async () => {
-  //     try {
-  //       updateBathrooms();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   getBathrooms();
-  // }, [])
 
   return (
     <MapContainer center={location} zoom={zoom} scrollWheelZoom={true} zoomControl={false}>

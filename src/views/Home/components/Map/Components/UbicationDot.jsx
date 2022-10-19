@@ -1,5 +1,5 @@
 import { Marker } from "react-leaflet";
-import LocationIcon from "../../../icons/LocationIcon";
+import LocationIcon from "../../../../../icons/LocationIcon";
 
 export default function UbicationDot({ position }) {
 

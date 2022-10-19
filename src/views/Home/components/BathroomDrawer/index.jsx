@@ -7,9 +7,10 @@ import { grey } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import bathroomDrawerStore from '../../stores/bathroomDrawerStore';
 import { Button, Stack } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from 'react-router-dom';
+import bathroomDrawerStore from '../../../../stores/bathroomDrawerStore';
 
 const drawerBleeding = 56;
 
@@ -40,6 +41,7 @@ function BathroomDrawer(props) {
     setIsOpen: state.setIsOpen,
     data: state.data
   }))
+  const navigate = useNavigate();
 
   const toggleDrawer = (newOpen) => () => {
     setIsOpen(newOpen);
@@ -48,13 +50,18 @@ function BathroomDrawer(props) {
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
 
+  const handleViewMore = () => {
+    toggleDrawer(false);
+    navigate(`/bathroom/${data.id}`);
+  }
+
   return (
     <Root>
       <CssBaseline />
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(30% - ${drawerBleeding}px)`,
+            height: `calc(25% - ${drawerBleeding}px)`,
             overflow: 'visible',
           },
         }}
@@ -80,15 +87,17 @@ function BathroomDrawer(props) {
             left: 0,
           }}
         >
-          <Puller/>
+          <Puller />
           <Stack direction="row" justifyContent="space-between">
-            <Typography variant="h6" sx={{ p: 2, color: 'text.primary', paddingTop: 3}}>{data.name}</Typography>
-            <Button
-              size="small"
-              onClick={toggleDrawer(false)}
-            >
-              <CloseIcon/>
-            </Button>
+            <Typography variant="h6" sx={{ p: 2, color: 'text.primary', paddingTop: 3 }}>{data.name}</Typography>
+            <Stack paddingTop={2} justifyContent="start">
+              <Button
+                size="small"
+                onClick={toggleDrawer(false)}
+              >
+                <CloseIcon style={{ color: "#bbb" }} />
+              </Button>
+            </Stack>
           </Stack>
         </StyledBox>
         <StyledBox
@@ -97,9 +106,16 @@ function BathroomDrawer(props) {
             pb: 2,
             height: '100%',
             overflow: 'auto',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "end"
           }}
         >
-          
+          <Stack p={1}>
+            <Button onClick={handleViewMore} variant="contained">
+              Ver más
+            </Button>
+          </Stack>
         </StyledBox>
       </SwipeableDrawer>
     </Root>
